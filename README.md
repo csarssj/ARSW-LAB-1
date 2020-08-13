@@ -55,6 +55,12 @@
 	- Change the beginning with start() to run(). How does the output change? Why?
 	
 	![image](https://github.com/csarssj/ARSW-LAB-1/blob/master/resources/IMG1.png)
+	
+	La diferencia es que cuando el programa llama al método start(), se crea un nuevo hilo y 
+	el código dentro de run() se ejecuta en nuevo hilo mientras que si llama al método run() directamente
+	Se creara un  nuevo hilo y el código dentro de run() se ejecutará en el hilo actual directamente.
+	Por eso en el programa cuando implementamos run() se muestra en orden los numeros y cuando implementamos start()
+	se ejecutan sin un orden especifico.
 
 ## Authors
 
