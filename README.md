@@ -3,7 +3,7 @@
 ## Part I - Introduction to threads in JAVA
 
 1. In agreement with the lectures, complete the classes CountThread, so that they define the life cycle of a thread that prints the numbers between A and B on the screen.
-	```
+	```java
 	public class CountThread implements Runnable{
 		private int A;
 		private int B;
@@ -23,7 +23,7 @@
 	```
 2. Complete the main method of the CountMainThreads class so that: 
 	- Create 3 threads of type CountThread, assigning the first interval [0..99], the second [99..199], and the third [200..299]. 
-	```
+	```java
 	public class CountThreadsMain {
     
 	    public static void main(String a[]){
@@ -35,7 +35,7 @@
 	}
 	```
 	- Start the three threads with start(). Run and check the output on the screen. 
-	```
+	```java
 	public class CountThreadsMain {
     
 	    public static void main(String a[]){
@@ -43,13 +43,18 @@
 		Thread h2 = new Thread(new CountThread(99,199));
 		Thread h3 = new Thread(new CountThread(200,299));
 		h1.start();
+		//h1.run();
 		h2.start();
+		//h2.run();
 		h3.start();
+		//h3.run();
 
 	    } 
 	}
 	```
 	- Change the beginning with start() to run(). How does the output change? Why?
+	
+	![image](https://github.com/csarssj/ARSW-LAB-1/blob/master/resources/IMG1.png)
 
 ## Authors
 
