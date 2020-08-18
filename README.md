@@ -62,6 +62,19 @@
 	Por eso en el programa cuando implementamos run() se muestra en orden los numeros y cuando implementamos start()
 	se ejecutan sin un orden especifico.
 
+##Snake
+
+Accordingly, and using the game logic, identify and write clearly (ANSWERS.txt file)
+1. Possible race conditions
+	When two snakes eat a mouse at the same time
+	When two snakes take a power  at the same time
+	Probability when two or more snakes pass through the same cell
+2. An incorrect or inappropriate use of collections, considering its concurrent handling(For this increase the game speed and execute it multiples times until an error has been raised).
+	Using linkedlist throws a "ConcurrentModificationException" error and is possibly not the best solution for handling concurrency
+3. Unnecessary use of active waits
+	wait for the snakes to die
+
+
 ## Authors
 
 [César González](https://github.com/csarssj) 
