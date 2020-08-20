@@ -39,7 +39,8 @@ public class SnakeApp {
     private static Board board;
     int nr_selected = 0;
     Thread[] thread = new Thread[MAX_THREADS];
-    private boolean start;
+    private boolean start; 
+    private boolean dead;
     private JButton ini;
     private JButton resume;
     private JButton pause;
@@ -131,6 +132,20 @@ public class SnakeApp {
 				for (int i = 0; i != MAX_THREADS; i++ ) {
 					snakes[i].pause();
 				}
+				int longest = 0;
+				int first = 0;
+				for(int i = 0; i != MAX_THREADS; i++) {
+					if(longest < snakes[i].getBody().size()) {
+						longest = snakes[i].getBody().size();
+					}
+					if(snakes[i].isSnakeEnd() && !dead) {
+						first = snakes[i].getIdt();
+						dead =  true;
+					}
+				}
+				System.out.println("La snake más larga es" + String.valueOf(longest));
+				String res = (dead) ? "primera serpiente en morir fue" + String.valueOf(first) : "No ha muerto nadie";
+				System.out.println(res);
 				
 			}
     	});

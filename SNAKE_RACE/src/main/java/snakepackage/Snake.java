@@ -3,6 +3,7 @@ package snakepackage;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Random;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 import enums.Direction;
 import enums.GridSize;
@@ -12,7 +13,8 @@ public class Snake extends Observable implements Runnable {
     private int idt;
     private Cell head;
     private Cell newCell;
-    private LinkedList<Cell> snakeBody = new LinkedList<Cell>();
+    //private LinkedList<Cell> snakeBody = new LinkedList<Cell>();
+    private ConcurrentLinkedDeque<Cell> snakeBody = new ConcurrentLinkedDeque<Cell>();
     //private Cell objective = null;
     private Cell start = null;
 
@@ -336,7 +338,7 @@ public class Snake extends Observable implements Runnable {
         this.objective = c;
     }*/
 
-    public LinkedList<Cell> getBody() {
+    public ConcurrentLinkedDeque<Cell> getBody() {
         return this.snakeBody;
     }
 
