@@ -26,6 +26,7 @@ public class Snake extends Observable implements Runnable {
     private boolean isSelected = false;
     private int growing = 0;
     public boolean goal = false;
+    public boolean pause = false;
 
     public Snake(int idt, Cell head, int direction) {
         this.idt = idt;
@@ -47,21 +48,30 @@ public class Snake extends Observable implements Runnable {
 
     public void run() {
         while (!snakeEnd) {
-            
-            snakeCalc();
-
-            //NOTIFY CHANGES TO GUI
-            setChanged();
-            notifyObservers();
-
-            try {
-                if (hasTurbo == true) {
-                    Thread.sleep(200 / 3);
-                } else {
-                    Thread.sleep(200);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            while(!pause) {
+	            snakeCalc();
+	
+	            //NOTIFY CHANGES TO GUI
+	            setChanged();
+	            notifyObservers();
+	
+	            try {
+	                if (hasTurbo == true) {
+	                    Thread.sleep(200 / 3);
+	                } else {
+	                    Thread.sleep(200);
+	                }
+	            } catch (InterruptedException e) {
+	                e.printStackTrace();
+	            }
+            } synchronized(this) {
+            	if (pause) {
+    				try {
+    					wait(); // wait FOREVER for data
+    				} catch (InterruptedException ex) {
+    					ex.printStackTrace();
+		            }
+		        }	
             }
 
         }
@@ -340,6 +350,16 @@ public class Snake extends Observable implements Runnable {
 
     public int getIdt() {
         return idt;
+    }
+    public void pause() {
+    	this.pause = true;
+    	
+    }
+    public synchronized void  resume() {
+    	if(pause) {
+    		this.pause = false;
+    		this.notify();
+    	}
     }
 
 }
