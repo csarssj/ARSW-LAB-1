@@ -74,6 +74,60 @@ Accordingly, and using the game logic, identify and write clearly (ANSWERS.txt f
 3. Unnecessary use of active waits
 
 	wait for the snakes to die
+4As you can see, the game is incomplete. Write code in order to implement functionallities through buttons in the GUI to start / Pause / Resume the game: start the game if it has not started, Pause the game if it is on, Resume the game if it is suspended. Keep in mind:
+When the game has been paused, in some point of the screen you have to show 
+the longest snake
+The worst snake:(the first snake  dead): 
+   - Pause:
+	```java
+	pause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i != MAX_THREADS; i++ ) {
+					snakes[i].pause();
+				}
+				int longest = 0;
+				int first = 0;
+				for(int i = 0; i != MAX_THREADS; i++) {
+					if(longest < snakes[i].getBody().size()) {
+						longest = snakes[i].getBody().size();
+					}
+					if(snakes[i].isSnakeEnd() && !dead) {
+						first = snakes[i].getIdt();
+						dead =  true;
+					}
+				}
+				System.out.println("La snake más larga es" + String.valueOf(longest));
+				String res = (dead) ? "primera serpiente en morir fue" + String.valueOf(first) : "No ha muerto nadie";
+				System.out.println(res);
+				
+			}
+    	});
+	```
+   - Start: 
+   	```java
+   	ini.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent e){
+    			if(!start){
+    				for (int i = 0; i != MAX_THREADS; i++) {
+    					thread[i].start();
+    				}
+    			}start = true;
+            }
+        });
+	```
+    - Resume: 
+   	```java
+   	resume.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i != MAX_THREADS; i++ ) {
+					snakes[i].resume();
+				}
+				
+			}
+    	});
+	```
+
+Remember that the pause of the snakes are not instantanious, and you have to guarantee that all the information showed is consistent
 
 
 ## Authors
