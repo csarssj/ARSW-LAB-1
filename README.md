@@ -112,7 +112,7 @@ The worst snake:(the first snake  dead):
     					thread[i].start();
     				}
     			}start = true;
-            }
+            }'S
         });
 	```
     - Resume: 
@@ -137,3 +137,7 @@ Remember that the pause of the snakes are not instantanious, and you have to gua
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/csarssj/ARSW-LAB-1/blob/master/LICENSE) file for details
+
+## NOTE
+ 
+Tuve un error con VisualVM en eclipse el cual no pude solucionar, voy a probar en otras IDE'S´para proximos laboratorios
